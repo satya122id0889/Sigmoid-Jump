@@ -1,82 +1,103 @@
-Here’s a professional **README.md** for your **Micrograd 2.0 (SigmoidJump)** project, optimized for recruiters and ATS keywords while highlighting your deep learning expertise:
+# **🚀 SigmoidJump: Build Neural Networks from Scratch**  
+*A beginner-friendly Python implementation of autograd and neural networks*  
+
+![Python](https://img.shields.io/badge/Python-3.8%2B-blue) ![Neural Networks](https://img.shields.io/badge/Neural_Networks-From_Scratch-orange)  
+
+## **✨ What is SigmoidJump?**  
+SigmoidJump is a **lightweight neural network framework** built from scratch to help beginners understand:  
+- How **backpropagation** really works  
+- What happens inside **PyTorch/TensorFlow**  
+- How to build **neurons, layers, and MLPs** with pure Python  
+
+Perfect for students and aspiring ML engineers!  
 
 ---
 
-# **🧠 Micrograd 2.0: A Minimalist Neural Network Framework**  
-*From Scratch in Python — Autograd, MLP Training, and Visualization*  
-
-![Python](https://img.shields.io/badge/Python-3.11%2B-blue) ![PyTorch](https://img.shields.io/badge/PyTorch-Inspired-red) ![Graphviz](https://img.shields.io/badge/Graphviz-Visualization-green)  
-
-## **📌 Project Overview**  
-Built a lightweight **neural network framework** from scratch to understand core mechanics of backpropagation, autograd, and MLP training. Key features:  
-- **Autograd Engine**: Implemented `Value` class with forward/backward passes for tensors (like PyTorch).  
-- **Neural Network Components**: Designed `Neuron`, `Layer`, and `MLP` classes supporting custom architectures.  
-- **Training Loop**: Trained a 3-layer MLP on synthetic data, achieving **85% loss reduction in 20 epochs**.  
-- **Visualization**: Used Graphviz to compute graphs for debugging (e.g., gradients, operations).  
-
-**Use Case**: Educational tool for learning DL fundamentals, adaptable for lightweight ML tasks.  
+## **🔧 Key Features**  
+✅ **Autograd Engine** - Automatic differentiation like PyTorch  
+✅ **Neural Network Components** - Neurons, Layers, and MLPs  
+✅ **Activation Functions** - ReLU, Tanh, Sigmoid  
+✅ **Training Loop** - Train models with gradient descent  
+✅ **Visualization** - See computation graphs with Graphviz  
 
 ---
 
-## **🚀 Key Features**  
-### **1. Autograd Engine**  
-- **Core `Value` Class**: Supports operations (`+`, `*`, `tanh`, `ReLU`, `exp`) with chain rule backpropagation.  
-- **Example**:  
-  ```python
-  a = Value(2.0); b = Value(-3.0)  
-  c = a * b; c.backward()  # Computes gradients: ∂c/∂a, ∂c/∂b  
-  ```  
-
-### **2. Neural Network Building Blocks**  
-- **MLP Architecture**: Built a 3-layer network (`3 → 4 → 4 → 1`) with Tanh activation.  
-- **Training**: Manual SGD loop with loss convergence from **5.16 → 0.06** (MSE).  
-
-### **3. Visualization**  
-- **Computation Graphs**: Rendered via Graphviz to trace gradients and operations (e.g., `draw_dot(o)`).  
-  ![Graph Example](https://i.imgur.com/example_graph.png) *(placeholder)*  
-
----
-
-## **🛠️ Installation & Usage**  
+## **📦 Installation**  
 ```bash
-pip install numpy matplotlib graphviz  
-```  
+pip install numpy matplotlib graphviz
+```
+
+---
+
+## **🚀 Quick Start**  
+### 1. **Create a Neuron**  
 ```python
-# Run the Jupyter Notebook:  
-jupyter notebook micrograd_2.0.ipynb  
-```  
+from sigmoidjump import Value
+
+# Inputs
+x1 = Value(2.0, label='x1')  
+x2 = Value(0.0, label='x2')  
+
+# Weights  
+w1 = Value(-3.0, label='w1')  
+w2 = Value(1.0, label='w2')  
+
+# Neuron computation  
+n = x1*w1 + x2*w2 + Value(6.7, label='bias')  
+out = n.tanh()  
+out.backward()  # Magic happens here!
+```
+
+### 2. **Train a Neural Network**  
+```python
+model = MLP(3, [4, 4, 1])  # 3-layer network  
+
+# Training loop  
+for epoch in range(20):  
+    loss = train_step(model, X, y)  
+    print(f"Epoch {epoch}, Loss: {loss.data:.4f}")  
+```
 
 ---
 
-## **📂 Files**  
-- `micrograd_2.0.ipynb`: Full implementation (autograd, MLP, training).  
-- `README.md`: Project documentation.  
+## **📊 Sample Output**  
+```
+Epoch 0, Loss: 5.1684  
+Epoch 1, Loss: 2.8050  
+...  
+Epoch 19, Loss: 0.0648  # Loss decreasing! 🎉
+```
 
 ---
 
-## **🔍 Why This Project?**  
-- **ATS Keywords**: *Autograd, Backpropagation, MLP, PyTorch-like, Neural Networks, SGD, Computation Graph*.  
-- **Swiggy Relevance**: Demonstrates **low-level understanding** of DL frameworks (useful for optimizing recommendation systems).  
-- **Educational Value**: Shows mastery of **first principles** (e.g., gradients, tensor ops).  
+## **📚 Learn Concepts**  
+🔹 **How backpropagation works**  
+🔹 **What gradients really are**  
+🔹 **Building blocks of deep learning**  
 
 ---
 
-## **📜 License**  
-MIT License - Free for academic/portfolio use.  
+## **📂 Project Files**  
+- `sigmoidjump.ipynb` - Main implementation (Jupyter Notebook)  
+- `README.md` - This guide  
 
 ---
 
-### **📩 Contact**  
+## **💡 Why This Project?**  
+- **No black boxes!** Understand every step of deep learning  
+- **Perfect for resumes** - Shows core ML knowledge  
+- **Fun to experiment with!**  
+
+---
+
+## **👨‍💻 Author**  
 **Satyabrata Satapathy**  
-[LinkedIn](https://linkedin.com/in/your-profile) | [GitHub](https://github.com/satya122id0889) | satya78550@gmail.com  
+📧 satya78550@gmail.com | 🔗 [GitHub](https://github.com/satya122id0889)  
+
+---
+
+**🌟 Star this repo if you find it useful!**  
 
 --- 
 
-### **🎯 Key Improvements Over v1**  
-- Added **ReLU, Sigmoid activations** (beyond Tanh).  
-- Optimized backpropagation with **topological sort**.  
-- Extended visualization for **debugging complex graphs**.  
-
----
-
-This README balances **technical depth** with **recruiter-friendly highlights**. Adjust the `Graphviz` image link if you have a screenshot! Let me know if you'd like to emphasize any other aspects.
+This version keeps it **simple, engaging, and beginner-friendly** while highlighting the educational value. Adjust the links/emojis to your style! 🚀
